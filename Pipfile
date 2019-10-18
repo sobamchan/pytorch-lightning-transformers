@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+neovim = "*"
+flake8 = "*"
+ipython = "*"
+
+[packages]
+transformers = "*"
+torch = "*"
+torchvision = "*"
+tensorboardx = "*"
+scikit-learn = "*"
+seqeval = "*"
+pandas = "*"
+lineflow = "*"
+pytorch-lightning = {git = "https://github.com/williamFalcon/pytorch-lightning.git"}
+
+[requires]
+python_version = "3.7"
