@@ -1,4 +1,4 @@
-from typing import List, Dict, Callable
+from typing import Dict
 from collections import OrderedDict
 from functools import partial
 
@@ -17,7 +17,7 @@ MAX_LEN = 256
 NUM_LABELS = 2
 
 
-def preprocess(tokenizer: BertTokenizer, x: Dict) -> Callable:
+def preprocess(tokenizer: BertTokenizer, x: Dict) -> Dict:
     inputs = tokenizer.encode_plus(
             x["string1"],
             x["string2"],
