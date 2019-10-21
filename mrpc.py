@@ -17,15 +17,6 @@ MAX_LEN = 256
 NUM_LABELS = 2
 
 
-def _pad(x: List[int], pad_idx: int, maxlen: int) -> List[int]:
-    padded: List[int]
-    if len(x) > maxlen:
-        padded = x[:maxlen]
-    else:
-        padded = x + [pad_idx] * (maxlen - len(x))
-    return padded
-
-
 def preprocess(tokenizer: BertTokenizer, x: Dict) -> Callable:
     inputs = tokenizer.encode_plus(
             x["string1"],
