@@ -11,7 +11,7 @@ $ pipenv shell
 ## Usage
 
 ### Fine-tune for [MRPC](https://www.microsoft.com/en-us/download/details.aspx?id=52398)
-```py
-python mrpc.py
+```bash
+$ python mrpc.py
 ```
 This will load pre-trained BERT and fine-tune it with putting classification layer on top on MRPC task (paraphrase identification).
