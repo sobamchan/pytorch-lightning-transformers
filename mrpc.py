@@ -18,16 +18,20 @@ NUM_LABELS = 2
 
 
 def preprocess(tokenizer: BertTokenizer, x: Dict) -> Dict:
+    # Given two sentences, x["string1"] and x["string2"], this function returns BERT ready inputs.
     inputs = tokenizer.encode_plus(
             x["string1"],
             x["string2"],
             add_special_tokens=True,
             max_length=MAX_LEN,
             )
+
+    # First `input_ids` is a sequence of id-type representation of input string.
+    # Second `token_type_ids` is sequence identifier to show model the span of "string1" and "string2" individually.
     input_ids, token_type_ids = inputs["input_ids"], inputs["token_type_ids"]
     attention_mask = [1] * len(input_ids)
-    padding_length = MAX_LEN - len(input_ids)
 
+    # BERT requires sequences in the same batch to have same length, so let's pad!
     padding_length = MAX_LEN - len(input_ids)
 
     pad_id = tokenizer.pad_token_id
@@ -35,15 +39,18 @@ def preprocess(tokenizer: BertTokenizer, x: Dict) -> Dict:
     attention_mask = attention_mask + ([0] * padding_length)
     token_type_ids = token_type_ids + ([pad_id] * padding_length)
 
+    # Super simple validation.
     assert len(input_ids) == MAX_LEN, "Error with input length {} vs {}".format(len(input_ids), MAX_LEN)
     assert len(attention_mask) == MAX_LEN, "Error with input length {} vs {}".format(len(attention_mask), MAX_LEN)
     assert len(token_type_ids) == MAX_LEN, "Error with input length {} vs {}".format(len(token_type_ids), MAX_LEN)
 
+    # Convert them into PyTorch format.
     label = torch.tensor(int(x["quality"])).long()
     input_ids = torch.tensor(input_ids)
     attention_mask = torch.tensor(attention_mask)
     token_type_ids = torch.tensor(token_type_ids)
 
+    # DONE!
     return {
             "label": label,
             "input_ids": input_ids,
