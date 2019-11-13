@@ -10,6 +10,11 @@ $ pipenv shell
 
 ## Usage
 
+### Fine-tune for [CommonsenseQA](https://www.tau-nlp.org/commonsenseqa) with 2 gpus.
+```bash
+CUDA_VISIBLE_DEVICES=0,1 python csqa.py --gpus 2
+```
+
 ### Fine-tune for [MRPC](https://www.microsoft.com/en-us/download/details.aspx?id=52398)
 ```bash
 $ python mrpc.py
