@@ -1,4 +1,4 @@
-# pytorch-lightning-transformers
+# pytorch-lightning-transformers [Medium article](https://towardsdatascience.com/how-to-fine-tune-bert-with-pytorch-lightning-ba3ad2f928d2)
 
 ## Setup
 ```bash
